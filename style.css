@@ -10,6 +10,7 @@
     --darkreader-header-background:rgb(14, 19, 31);
     --darkreader-content-background:rgb(84, 91, 94);
     --darkreader-card-background:rgb(14, 19, 31);
+    --darkreader-container-line:#e8e6e3;
 }
 
 * {
@@ -28,7 +29,8 @@ body {
 }
 
 sidebar {
-    height: 100vh;
+    position:sticky;
+    min-height: 100vh;
     background-color: var(--darkreader-sidebar-background);
     color:var(--darkreader-sidebar-text);
     display: grid;
@@ -42,7 +44,7 @@ sidebar {
     padding: 20px;
     padding-left: 5px;
     box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
-    z-index: 1;
+    z-index: 3;
 }
 
 sidebar > * {
@@ -60,6 +62,10 @@ sidebar > * > span {
 sidebar > * > a {
     justify-self: flex-start;
     align-self: center;
+}
+
+sidebar > * >a:hover {
+    background-color: var(--darkreader-selection-background);
 }
 
 sidebar > div:nth-child(1) > a {
@@ -98,6 +104,10 @@ header {
         "pfp2 profile buttons buttons buttons buttons";
     align-items: center;
     gap:10px;
+    z-index: 2;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+    position:sticky;
+    top:0;
 }
 
 input {
@@ -111,6 +121,7 @@ input, textarea {
 }
 
 .search {
+    position:sticky;
     grid-area: search;
     display: grid;
     grid-template-columns: auto 1fr;
@@ -118,14 +129,18 @@ input, textarea {
 }
 
 .mdi-bell-ring {
+    position:sticky;
     grid-area: notif;
 }
 
 .pfp1 {
+    position:sticky;
     grid-area: pfp1;
 }
 
 .name {
+    position:sticky;
+    top:0;
     grid-area: name;
 }
 
@@ -138,7 +153,9 @@ img {
     border-radius: 50%;
     max-height: 100%;
 }
+
 #profile {
+    min-width: 250px;
     grid-area: profile;
     display: grid;
     grid-template-rows: 1fr 2fr;
@@ -205,12 +222,14 @@ content {
 
 .project-card {
     border-radius: 10px;
-    padding: 10px;
+    padding: 20px;
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: auto;
     gap:10px;
     background-color: var(--darkreader-card-background);
+    z-index: 1;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
 }
 
 p {
@@ -229,9 +248,20 @@ p {
     display: grid;
     grid-template-rows: 1fr;
     align-content: flex-start;
-    padding: 10px;
+    padding: 20px;
     background-color: var(--darkreader-card-background);
     border-radius: 10px;
+    z-index: 1;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+    gap:10px;
+}
+
+#announcement-container:hover,
+.project-card:hover,
+#trending-container:hover,
+sidebar:hover,
+header:hover {
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
 }
 
 .announcement {
@@ -240,9 +270,12 @@ p {
 }
 
 #announcement-container > div:nth-child(2) {
-    border-top: solid 1px var(--darkreader-sidebar-background);
-    border-bottom: solid 1px var(--darkreader-sidebar-background);
+    border-top: solid 1px var(--darkreader-container-line);
+    border-bottom: solid 1px var(--darkreader-container-line);
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
+
 
 #trending {
     grid-area:trending;
@@ -253,11 +286,14 @@ p {
 
 #trending-container {
     display: grid;
-    padding: 10px;
+    padding: 20px;
     background-color: var(--darkreader-card-background);
     gap:10px;
     border-radius: 10px;
+    z-index: 1;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
 }
+
 
 .profile-card {
     display: grid;
@@ -267,6 +303,7 @@ p {
         "profile-picture name"
         "profile-picture quote";
     gap: 10px;
+    
 }
 
 .profile-card > img {
